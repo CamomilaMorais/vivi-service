@@ -12,9 +12,6 @@ public class CurriculoDTO {
     @NotBlank
     private String descricao;
 
-    @NotNull
-    private Integer status;
-
     private String linkedin;
 
     private String github;

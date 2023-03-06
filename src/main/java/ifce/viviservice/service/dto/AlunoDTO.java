@@ -25,9 +25,6 @@ public class AlunoDTO {
     @NotNull
     private Integer celular;
 
-    @NotNull
-    private Integer status;
-
     @NotBlank
     private String email;
 

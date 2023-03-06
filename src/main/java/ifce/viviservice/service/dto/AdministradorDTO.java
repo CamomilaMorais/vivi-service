@@ -14,9 +14,6 @@ public class AdministradorDTO {
     @NotBlank
     private String documento;
 
-    @NotBlank
-    private Integer status;
-
     private String usuarioAlteracao;
 
     @Valid

@@ -14,9 +14,6 @@ public class CampusDTO {
     @NotBlank
     private String documento;
 
-    @NotNull
-    private Integer status;
-
     private String usuarioAlteracao;
 
 }

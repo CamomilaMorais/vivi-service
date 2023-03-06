@@ -18,9 +18,6 @@ public class DominioDTO {
     @NotBlank
     private String valor;
 
-    @NotNull
-    private Integer status;
-
     private String usuarioAlteracao;
 
     @Valid

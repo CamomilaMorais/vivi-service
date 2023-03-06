@@ -15,9 +15,6 @@ public class CursoDTO {
     @NotNull
     private Integer qtdSemestres;
 
-    @NotNull
-    private Integer status;
-
     private String usuarioAlteracao;
 
     @Valid
