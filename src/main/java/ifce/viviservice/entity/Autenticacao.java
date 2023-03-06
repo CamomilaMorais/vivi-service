@@ -1,4 +1,4 @@
-package com.ifce.viviservice.entity;
+package ifce.viviservice.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -16,25 +17,22 @@ import java.util.Date;
 public class Autenticacao {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
     private String login;
 
-    @Column(nullable = false)
     private String senha;
 
-    @Column(nullable = false)
     private Integer tipoPerfil;
 
-    @Column(nullable = false)
-    private Date dataInclusao;
+    private LocalDateTime dataInclusao;
 
-    @Column(nullable = true)
-    private Date dataAlteracao;
+    private LocalDateTime dataAlteracao;
 
-    @Column(nullable = true)
+    private String usuarioAlteracao;
+
     private Integer politicaPrivacidade;
 
 }

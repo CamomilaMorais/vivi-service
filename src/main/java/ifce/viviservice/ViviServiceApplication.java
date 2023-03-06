@@ -1,4 +1,4 @@
-package com.ifce.viviservice;
+package ifce.viviservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

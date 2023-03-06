@@ -1,4 +1,4 @@
-package com.ifce.viviservice.entity;
+package ifce.viviservice.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -13,33 +14,47 @@ import java.util.Date;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Empresa {
+public class Aluno {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
-    @Column(nullable = false)
     private String nome;
 
-    @Column(nullable = false)
     private String documento;
 
-    @Column(nullable = false)
+    @Column(unique = true)
+    private String matricula;
+
+    private Integer ddd;
+
+    private Integer celular;
+
     private Integer status;
 
-    @Column(nullable = false)
-    private Date dataInclusao;
+    @Column(unique = true)
+    private String email;
 
-    @Column(nullable = true)
-    private Date dataAlteracao;
+    private Integer semestre;
 
-    @Column(nullable = true)
+    private Date dataIngresso;
+
+    private Date dataEgresso;
+
+    private LocalDateTime dataInclusao;
+
+    private LocalDateTime dataAlteracao;
+
     private String usuarioAlteracao;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     @JoinColumn(name = "autenticacao_id")
     private Autenticacao autenticacao;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "curso_id")
+    private Curso curso;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "campus_id")
