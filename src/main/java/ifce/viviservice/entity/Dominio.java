@@ -8,20 +8,17 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Entity
 @Data
+@Entity
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "DOMINIO")
 public class Dominio {
 
     @Id
     @Column(name = "CODIGO")
     private String codigo;
-
-    @Column(name = "NOME")
-    private String nome;
 
     @Column(name = "DESCRICAO")
     private String descricao;

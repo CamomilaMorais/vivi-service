@@ -12,13 +12,14 @@ import java.util.Date;
 @Data
 @Entity
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "ALUNO")
 public class Aluno {
 
     @Id
     @Column(name = "CODIGO")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer codigo;
 
     @Column(name = "NOME")

@@ -11,13 +11,14 @@ import java.time.LocalDateTime;
 @Data
 @Entity
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "EXPERIENCIA")
 public class Experiencia {
 
     @Id
     @Column(name = "CODIGO")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer codigo;
 
     @Column(name = "CARGO")
