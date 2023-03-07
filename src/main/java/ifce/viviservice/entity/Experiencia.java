@@ -8,29 +8,41 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Entity
 @Data
+@Entity
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "EXPERIENCIA")
 public class Experiencia {
 
     @Id
-    // @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    @Column(name = "CODIGO")
+    private Integer codigo;
 
+    @Column(name = "CARGO")
     private String cargo;
 
+    @Column(name = "EMPRESA")
     private Integer empresa;
 
+    @Column(name = "DATA_INCLUSAO")
     private LocalDateTime dataInclusao;
 
+    @Column(name = "DATA_ALTERACAO")
     private LocalDateTime dataAlteracao;
 
+    @Column(name = "USUARIO_ALTERACAO")
     private String usuarioAlteracao;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "curriculo_id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(
+            name = "CURRICULO_ID",
+            referencedColumnName = "CODIGO",
+            nullable = false,
+            insertable = false,
+            updatable = false
+    )
     private Curriculo curriculo;
 
 }

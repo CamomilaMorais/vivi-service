@@ -9,55 +9,85 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Date;
 
-@Entity
 @Data
+@Entity
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "ALUNO")
 public class Aluno {
 
     @Id
-    // @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    @Column(name = "CODIGO")
+    private Integer codigo;
 
+    @Column(name = "NOME")
     private String nome;
 
+    @Column(name = "DOCUMENTO")
     private String documento;
 
-    @Column(unique = true)
+    @Column(name = "MATRICULA")
     private String matricula;
 
-    private Integer ddd;
+    @Column(name = "NUMERO_DDD")
+    private String ddd;
 
-    private Integer celular;
+    @Column(name = "NUMERO_CELULAR")
+    private String celular;
 
+    @Column(name = "STATUS")
     private Integer status;
 
-    @Column(unique = true)
+    @Column(name = "EMAIL")
     private String email;
 
+    @Column(name = "SEMESTRE")
     private Integer semestre;
 
+    @Column(name = "DATA_INGRESSO")
     private Date dataIngresso;
 
+    @Column(name = "DATA_EGRESSO")
     private Date dataEgresso;
 
+    @Column(name = "DATA_INCLUSAO")
     private LocalDateTime dataInclusao;
 
+    @Column(name = "DATA_ALTERACAO")
     private LocalDateTime dataAlteracao;
 
+    @Column(name = "USUARIO_ALTERACAO")
     private String usuarioAlteracao;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
-    @JoinColumn(name = "autenticacao_id")
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(
+            name = "AUTH_ID",
+            referencedColumnName = "CODIGO",
+            nullable = false,
+            insertable = false,
+            updatable = false
+    )
     private Autenticacao autenticacao;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "curso_id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(
+            name = "CURSO_ID",
+            referencedColumnName = "CODIGO",
+            nullable = false,
+            insertable = false,
+            updatable = false
+    )
     private Curso curso;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "campus_id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(
+            name = "CAMPUS_ID",
+            referencedColumnName = "CODIGO",
+            nullable = false,
+            insertable = false,
+            updatable = false
+    )
     private Campus campus;
 
 }

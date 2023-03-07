@@ -5,46 +5,58 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.time.LocalDateTime;
 
-@Entity
 @Data
+@Entity
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "CURRICULO")
 public class Curriculo {
 
     @Id
-    // @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    @Column(name = "CODIGO")
+    private Integer codigo;
 
+    @Column(name = "DESCRICAO")
     private String descricao;
 
+    @Column(name = "STATUS")
     private Integer status;
 
+    @Column(name = "URL_LINKEDIN")
     private String linkedin;
 
+    @Column(name = "URL_GITHUB")
     private String github;
 
+    @Column(name = "PERIODO_DISPONIVEL")
     private Integer periodoDisponivel;
 
+    @Column(name = "NIVEL_INGLES")
     private Integer nivelIngles;
 
+    @Column(name = "NIVEL_ESPANHOL")
     private Integer nivelEspanhol;
 
+    @Column(name = "COMPETENCIAS")
     private String competencias;
 
+    @Column(name = "OBSERVACOES")
     private String observacoes;
 
+    @Column(name = "DATA_INCLUSAO")
     private LocalDateTime dataInclusao;
 
+    @Column(name = "DATA_ALTERACAO")
     private LocalDateTime dataAlteracao;
 
+    @Column(name = "USUARIO_ALTERACAO")
     private String usuarioAlteracao;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "aluno_id")
-    private Aluno aluno;
 
 }

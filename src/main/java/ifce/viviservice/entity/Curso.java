@@ -13,26 +13,39 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "CURSO")
 public class Curso {
 
     @Id
-    // @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    @Column(name = "CODIGO")
+    private Integer codigo;
 
+    @Column(name = "NOME")
     private String nome;
 
+    @Column(name = "QTD_SEMESTRES")
     private Integer qtdSemestres;
 
+    @Column(name = "STATUS")
     private Integer status;
 
+    @Column(name = "DATA_INCLUSAO")
     private LocalDateTime dataInclusao;
 
+    @Column(name = "DATA_ALTERACAO")
     private LocalDateTime dataAlteracao;
 
+    @Column(name = "USUARIO_ALTERACAO")
     private String usuarioAlteracao;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "campus_id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(
+            name = "CAMPUS_ID",
+            referencedColumnName = "CODIGO",
+            nullable = false,
+            insertable = false,
+            updatable = false
+    )
     private Campus campus;
 
 }
