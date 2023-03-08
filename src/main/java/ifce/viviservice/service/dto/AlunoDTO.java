@@ -38,13 +38,12 @@ public class AlunoDTO {
 
     private String usuarioAlteracao;
 
-    @Valid
-    private AutenticacaoDTO autenticacao;
+    private Long codigoAutenticacao;
 
-    @Valid
-    private CursoDTO curso;
+    @NotNull
+    private Long codigoCurso;
 
-    @Valid
-    private CampusDTO campus;
+    @NotNull
+    private Long codigoCampus;
 
 }

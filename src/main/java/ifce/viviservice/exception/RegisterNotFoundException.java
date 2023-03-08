@@ -10,6 +10,10 @@ public class RegisterNotFoundException extends Exception {
         super("Registro com ID " + codigo + " não encontrado");
     }
 
+    public RegisterNotFoundException(String codigo, String valor) {
+        super("Registro com ID " + codigo + " e " + valor + " não encontrado");
+    }
+
     public RegisterNotFoundException(String codigo) {
         super("Registro com ID " + codigo + " não encontrado");
     }

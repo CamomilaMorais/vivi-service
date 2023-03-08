@@ -17,10 +17,9 @@ public class EmpresaDTO {
 
     private String usuarioAlteracao;
 
-    @Valid
-    private AutenticacaoDTO autenticacao;
+    private Long codigoAutenticacao;
 
-    @Valid
-    private CampusDTO campus;
+    @NotNull
+    private Long codigoCampus;
 
 }

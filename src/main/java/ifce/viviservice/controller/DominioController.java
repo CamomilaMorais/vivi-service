@@ -41,4 +41,16 @@ public class DominioController {
         this.service.remover(codigo, valor);
     }
 
+    @PutMapping("/{codigo}/{valor}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void atualizar(@PathVariable("codigo") String codigo, @PathVariable("valor") String valor, @RequestBody @Valid DominioDTO dto) throws RegisterNotFoundException {
+        this.service.atualizar(codigo, valor, dto);
+    }
+
+    @PutMapping("/desativar/{codigo}/{valor}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void desativar(@PathVariable("codigo") String codigo, @PathVariable("valor") String valor, @RequestParam("usuario") String usuario) throws RegisterNotFoundException {
+        this.service.desativar(codigo, valor, usuario);
+    }
+
 }

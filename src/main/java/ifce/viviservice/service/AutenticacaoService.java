@@ -1,5 +1,6 @@
 package ifce.viviservice.service;
 
+import ifce.viviservice.entity.Administrador;
 import ifce.viviservice.entity.Autenticacao;
 import ifce.viviservice.exception.RegisterNotFoundException;
 import ifce.viviservice.repository.AutenticacaoRepository;
@@ -10,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
 
 @Service
 public class AutenticacaoService {
@@ -44,6 +44,16 @@ public class AutenticacaoService {
                     return Void.TYPE;
                 })
                 .orElseThrow(() -> new RegisterNotFoundException(codigo));
+    }
+
+    public void atualizar(Long codigo, AutenticacaoDTO dto) throws RegisterNotFoundException {
+        Autenticacao entity = this.repository.findById(codigo).orElseThrow(() -> new RegisterNotFoundException(codigo));
+        LocalDateTime dataInclusao = entity.getDataInclusao();
+        entity = this.mapper.toAutenticacao(dto);
+        entity.setCodigo(codigo);
+        entity.setDataInclusao(dataInclusao);
+        entity.setDataAlteracao(LocalDateTime.now());
+        this.repository.save(entity);
     }
 
 }

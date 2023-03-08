@@ -34,4 +34,16 @@ public class AdministradorController {
         this.service.remover(codigo);
     }
 
+    @PutMapping("/{codigo}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void atualizar(@PathVariable("codigo") Long codigo, @RequestBody @Valid AdministradorDTO dto) throws RegisterNotFoundException {
+        this.service.atualizar(codigo, dto);
+    }
+
+    @PutMapping("/desativar/{codigo}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void desativar(@PathVariable("codigo") Long codigo, @RequestParam("usuario") String usuario) throws RegisterNotFoundException {
+        this.service.desativar(codigo, usuario);
+    }
+
 }

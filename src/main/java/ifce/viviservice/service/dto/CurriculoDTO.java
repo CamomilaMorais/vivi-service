@@ -31,7 +31,7 @@ public class CurriculoDTO {
 
     private String usuarioAlteracao;
 
-    @Valid
-    private AlunoDTO aluno;
+    @NotNull
+    private Long codigoAluno;
 
 }

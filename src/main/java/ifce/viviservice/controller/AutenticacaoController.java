@@ -2,6 +2,7 @@ package ifce.viviservice.controller;
 
 import ifce.viviservice.exception.RegisterNotFoundException;
 import ifce.viviservice.service.AutenticacaoService;
+import ifce.viviservice.service.dto.AdministradorDTO;
 import ifce.viviservice.service.dto.AutenticacaoDTO;
 import ifce.viviservice.service.dto.CadastroDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,12 @@ public class AutenticacaoController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void remover(@PathVariable("codigo") Long codigo) throws RegisterNotFoundException {
         this.service.remover(codigo);
+    }
+
+    @PutMapping("/{codigo}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void atualizar(@PathVariable("codigo") Long codigo, @RequestBody @Valid AutenticacaoDTO dto) throws RegisterNotFoundException {
+        this.service.atualizar(codigo, dto);
     }
 
 }

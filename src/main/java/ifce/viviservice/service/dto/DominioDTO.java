@@ -20,7 +20,7 @@ public class DominioDTO {
 
     private String usuarioAlteracao;
 
-    @Valid
-    private CampusDTO campus;
+    @NotNull
+    private Long codigoCampus;
 
 }

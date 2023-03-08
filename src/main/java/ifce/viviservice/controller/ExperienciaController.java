@@ -3,6 +3,7 @@ package ifce.viviservice.controller;
 import ifce.viviservice.exception.RegisterNotFoundException;
 import ifce.viviservice.service.ExperienciaService;
 import ifce.viviservice.service.dto.CadastroDTO;
+import ifce.viviservice.service.dto.CampusDTO;
 import ifce.viviservice.service.dto.ExperienciaDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,6 +33,12 @@ public class ExperienciaController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void remover(@PathVariable("codigo") Long codigo) throws RegisterNotFoundException {
         this.service.remover(codigo);
+    }
+
+    @PutMapping("/{codigo}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void atualizar(@PathVariable("codigo") Long codigo, @RequestBody @Valid ExperienciaDTO dto) throws RegisterNotFoundException {
+        this.service.atualizar(codigo, dto);
     }
 
 }

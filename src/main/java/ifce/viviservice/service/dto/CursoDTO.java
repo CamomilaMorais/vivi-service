@@ -17,7 +17,7 @@ public class CursoDTO {
 
     private String usuarioAlteracao;
 
-    @Valid
-    private CampusDTO campus;
+    @NotNull
+    private Long codigoCampus;
 
 }

@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Data
 public class AdministradorDTO {
@@ -16,10 +17,9 @@ public class AdministradorDTO {
 
     private String usuarioAlteracao;
 
-    @Valid
-    private AutenticacaoDTO autenticacao;
+    private Long codigoAutenticacao;
 
-    @Valid
-    private CampusDTO campus;
+    @NotNull
+    private Long codigoCampus;
 
 }

@@ -15,7 +15,7 @@ public class DominioMapper {
     @Autowired
     private ModelMapper mapper;
 
-    public Dominio toCampus(DominioDTO dto) {
+    public Dominio toDominio(DominioDTO dto) {
         return this.mapper.map(dto, Dominio.class);
     }
 

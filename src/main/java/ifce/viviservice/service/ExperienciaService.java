@@ -4,7 +4,6 @@ import ifce.viviservice.entity.Administrador;
 import ifce.viviservice.entity.Experiencia;
 import ifce.viviservice.exception.RegisterNotFoundException;
 import ifce.viviservice.repository.ExperienciaRepository;
-import ifce.viviservice.service.dto.AdministradorDTO;
 import ifce.viviservice.service.dto.CadastroDTO;
 import ifce.viviservice.service.dto.ExperienciaDTO;
 import ifce.viviservice.service.mapper.ExperienciaMapper;
@@ -12,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
 
 @Service
 public class ExperienciaService {
@@ -46,6 +44,16 @@ public class ExperienciaService {
                     return Void.TYPE;
                 })
                 .orElseThrow(() -> new RegisterNotFoundException(codigo));
+    }
+
+    public void atualizar(Long codigo, ExperienciaDTO dto) throws RegisterNotFoundException {
+        Experiencia entity = this.repository.findById(codigo).orElseThrow(() -> new RegisterNotFoundException(codigo));
+        LocalDateTime dataInclusao = entity.getDataInclusao();
+        entity = this.mapper.toExperiencia(dto);
+        entity.setCodigo(codigo);
+        entity.setDataInclusao(dataInclusao);
+        entity.setDataAlteracao(LocalDateTime.now());
+        this.repository.save(entity);
     }
 
 }

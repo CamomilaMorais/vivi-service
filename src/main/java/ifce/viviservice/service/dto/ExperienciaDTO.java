@@ -17,7 +17,7 @@ public class ExperienciaDTO {
 
     private String usuarioAlteracao;
 
-    @Valid
-    private CurriculoDTO curriculo;
+    @NotNull
+    private Long codigoCurriculo;
 
 }
