@@ -19,7 +19,7 @@ public class Experiencia {
     @Id
     @Column(name = "CODIGO")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer codigo;
+    private Long codigo;
 
     @Column(name = "CARGO")
     private String cargo;

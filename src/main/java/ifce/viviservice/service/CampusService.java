@@ -1,18 +1,16 @@
 package ifce.viviservice.service;
 
-import ifce.viviservice.entity.Administrador;
 import ifce.viviservice.entity.Campus;
-import ifce.viviservice.repository.AdministradorRepository;
+import ifce.viviservice.exception.RegisterNotFoundException;
 import ifce.viviservice.repository.CampusRepository;
-import ifce.viviservice.service.dto.AdministradorDTO;
 import ifce.viviservice.service.dto.CadastroDTO;
 import ifce.viviservice.service.dto.CampusDTO;
-import ifce.viviservice.service.mapper.AdministradorMapper;
 import ifce.viviservice.service.mapper.CampusMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Service
 public class CampusService {
@@ -22,15 +20,31 @@ public class CampusService {
     @Autowired
     private CampusMapper mapper;
 
-    public CadastroDTO create(CampusDTO dto) {
+    public CadastroDTO cadastrar(CampusDTO dto) {
         Campus entity = this.mapper.toCampus(dto);
         entity.setStatus(1);
         entity.setDataInclusao(LocalDateTime.now());
         entity = this.repository.save(entity);
         return CadastroDTO
                 .builder()
-                .mensagem("Campus criado com ID " + entity.getCodigo())
+                .mensagem("Campus cadastrado com ID " + entity.getCodigo())
                 .build();
+    }
+
+    public CampusDTO consultarPeloCodigo(Long codigo) throws RegisterNotFoundException {
+        Campus entity = this.repository.findById(codigo)
+                .orElseThrow(() -> new RegisterNotFoundException(codigo));
+        return this.mapper.toCampusDTO(entity);
+    }
+
+    public void remover(Long codigo) throws RegisterNotFoundException {
+        this.repository
+                .findById(codigo)
+                .map(entity -> {
+                    this.repository.delete(entity);
+                    return Void.TYPE;
+                })
+                .orElseThrow(() -> new RegisterNotFoundException(codigo));
     }
 
 }

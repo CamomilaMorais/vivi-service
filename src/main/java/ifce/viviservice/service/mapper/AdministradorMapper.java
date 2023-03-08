@@ -16,4 +16,8 @@ public class AdministradorMapper {
         return this.mapper.map(dto, Administrador.class);
     }
 
+    public AdministradorDTO toAdministradorDTO(Administrador entity) {
+        return this.mapper.map(entity, AdministradorDTO.class);
+    }
+
 }

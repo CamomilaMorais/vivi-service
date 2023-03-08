@@ -1,13 +1,12 @@
 package ifce.viviservice.controller;
 
+import ifce.viviservice.exception.RegisterNotFoundException;
 import ifce.viviservice.service.AdministradorService;
 import ifce.viviservice.service.dto.AdministradorDTO;
 import ifce.viviservice.service.dto.CadastroDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -19,8 +18,20 @@ public class AdministradorController {
     private AdministradorService service;
 
     @PostMapping
-    public CadastroDTO create(@RequestBody @Valid AdministradorDTO dto) {
-        return this.service.create(dto);
+    @ResponseStatus(HttpStatus.CREATED)
+    public CadastroDTO cadastrar(@RequestBody @Valid AdministradorDTO dto) {
+        return this.service.cadastrar(dto);
+    }
+
+    @GetMapping("/{codigo}")
+    public AdministradorDTO consultarPeloCodigo(@PathVariable("codigo") Long codigo) throws RegisterNotFoundException {
+        return this.service.consultarPeloCodigo(codigo);
+    }
+
+    @DeleteMapping("/{codigo}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void remover(@PathVariable("codigo") Long codigo) throws RegisterNotFoundException {
+        this.service.remover(codigo);
     }
 
 }

@@ -19,7 +19,7 @@ public class Autenticacao {
     @Id
     @Column(name = "CODIGO")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer codigo;
+    private Long codigo;
 
     @Column(name = "LOGIN")
     private String login;

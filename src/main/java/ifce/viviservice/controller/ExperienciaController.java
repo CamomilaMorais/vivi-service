@@ -1,9 +1,9 @@
 package ifce.viviservice.controller;
 
 import ifce.viviservice.exception.RegisterNotFoundException;
-import ifce.viviservice.service.CampusService;
+import ifce.viviservice.service.ExperienciaService;
 import ifce.viviservice.service.dto.CadastroDTO;
-import ifce.viviservice.service.dto.CampusDTO;
+import ifce.viviservice.service.dto.ExperienciaDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -11,20 +11,20 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/campi")
-public class CampusController {
+@RequestMapping("/experiencias")
+public class ExperienciaController {
 
     @Autowired
-    private CampusService service;
+    private ExperienciaService service;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public CadastroDTO cadastrar(@RequestBody @Valid CampusDTO dto) {
+    public CadastroDTO cadastrar(@RequestBody @Valid ExperienciaDTO dto) {
         return this.service.cadastrar(dto);
     }
 
     @GetMapping("/{codigo}")
-    public CampusDTO consultarPeloCodigo(@PathVariable("codigo") Long codigo) throws RegisterNotFoundException {
+    public ExperienciaDTO consultarPeloCodigo(@PathVariable("codigo") Long codigo) throws RegisterNotFoundException {
         return this.service.consultarPeloCodigo(codigo);
     }
 

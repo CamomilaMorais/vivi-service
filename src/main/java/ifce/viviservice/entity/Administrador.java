@@ -19,7 +19,7 @@ public class Administrador {
     @Id
     @Column(name = "CODIGO")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer codigo;
+    private Long codigo;
 
     @Column(name = "NOME")
     private String nome;

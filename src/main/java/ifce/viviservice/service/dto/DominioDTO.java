@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 public class DominioDTO {
 
     @NotBlank
-    private String nome;
+    private String codigo;
 
     @NotBlank
     private String descricao;

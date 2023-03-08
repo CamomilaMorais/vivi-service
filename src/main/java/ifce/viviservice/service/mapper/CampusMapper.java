@@ -16,4 +16,8 @@ public class CampusMapper {
         return this.mapper.map(dto, Campus.class);
     }
 
+    public CampusDTO toCampusDTO(Campus entity) {
+        return this.mapper.map(entity, CampusDTO.class);
+    }
+
 }

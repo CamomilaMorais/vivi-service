@@ -1,11 +1,11 @@
 package ifce.viviservice.service;
 
-import ifce.viviservice.entity.Administrador;
+import ifce.viviservice.entity.Autenticacao;
 import ifce.viviservice.exception.RegisterNotFoundException;
-import ifce.viviservice.repository.AdministradorRepository;
-import ifce.viviservice.service.dto.AdministradorDTO;
+import ifce.viviservice.repository.AutenticacaoRepository;
+import ifce.viviservice.service.dto.AutenticacaoDTO;
 import ifce.viviservice.service.dto.CadastroDTO;
-import ifce.viviservice.service.mapper.AdministradorMapper;
+import ifce.viviservice.service.mapper.AutenticacaoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,27 +13,27 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
-public class AdministradorService {
+public class AutenticacaoService {
 
     @Autowired
-    private AdministradorRepository repository;
+    private AutenticacaoRepository repository;
     @Autowired
-    private AdministradorMapper mapper;
+    private AutenticacaoMapper mapper;
 
-    public CadastroDTO cadastrar(AdministradorDTO dto) {
-        Administrador entity = this.mapper.toAdministrador(dto);
+    public CadastroDTO cadastrar(AutenticacaoDTO dto) {
+        Autenticacao entity = this.mapper.toAutenticacao(dto);
         entity.setDataInclusao(LocalDateTime.now());
         entity = this.repository.save(entity);
         return CadastroDTO
                 .builder()
-                .mensagem("Administrador(a) cadastrado(a) com ID " + entity.getCodigo())
+                .mensagem("Autenticacao cadastrada com ID " + entity.getCodigo())
                 .build();
     }
 
-    public AdministradorDTO consultarPeloCodigo(Long codigo) throws RegisterNotFoundException {
-        Administrador entity = this.repository.findById(codigo)
+    public AutenticacaoDTO consultarPeloCodigo(Long codigo) throws RegisterNotFoundException {
+        Autenticacao entity = this.repository.findById(codigo)
                 .orElseThrow(() -> new RegisterNotFoundException(codigo));
-        return this.mapper.toAdministradorDTO(entity);
+        return this.mapper.toAutenticacaoDTO(entity);
     }
 
     public void remover(Long codigo) throws RegisterNotFoundException {
