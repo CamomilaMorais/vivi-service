@@ -1,5 +1,7 @@
 package ifce.viviservice.config;
 
+import ifce.viviservice.service.AutenticacaoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -13,12 +15,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+    @Autowired
+    private AutenticacaoService autenticacaoService;
+
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-            .withUser("Camila")
-            .password("123")
-            .roles("USER");
+        auth
+            .userDetailsService(autenticacaoService)
+            .passwordEncoder(passwordEncoder());
     }
 
     @Bean

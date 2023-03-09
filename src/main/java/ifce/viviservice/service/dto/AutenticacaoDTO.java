@@ -9,13 +9,13 @@ import javax.validation.constraints.NotNull;
 public class AutenticacaoDTO {
 
     @NotBlank
-    private String login;
+    private String usuario;
 
     @NotBlank
     private String senha;
 
     @NotNull
-    private Integer tipoPerfil;
+    private String perfil;
 
     private String usuarioAlteracao;
 

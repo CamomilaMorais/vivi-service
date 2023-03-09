@@ -1,6 +1,5 @@
 package ifce.viviservice.service;
 
-import ifce.viviservice.entity.Administrador;
 import ifce.viviservice.entity.Autenticacao;
 import ifce.viviservice.exception.RegisterNotFoundException;
 import ifce.viviservice.repository.AutenticacaoRepository;
@@ -8,12 +7,16 @@ import ifce.viviservice.service.dto.AutenticacaoDTO;
 import ifce.viviservice.service.dto.CadastroDTO;
 import ifce.viviservice.service.mapper.AutenticacaoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 
 @Service
-public class AutenticacaoService {
+public class AutenticacaoService implements UserDetailsService {
 
     @Autowired
     private AutenticacaoRepository repository;
@@ -54,6 +57,18 @@ public class AutenticacaoService {
         entity.setDataInclusao(dataInclusao);
         entity.setDataAlteracao(LocalDateTime.now());
         this.repository.save(entity);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Autenticacao auth = this.repository.findByUsuario(username)
+                .orElseThrow(() -> new UsernameNotFoundException("Login não encontrado"));
+
+        return User.builder()
+                .username(username)
+                .password(auth.getSenha())
+                .roles(auth.getPerfil())
+                .build();
     }
 
 }

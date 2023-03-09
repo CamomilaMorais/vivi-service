@@ -21,14 +21,14 @@ public class Autenticacao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
 
-    @Column(name = "LOGIN")
-    private String login;
+    @Column(name = "USUARIO")
+    private String usuario;
 
     @Column(name = "SENHA")
     private String senha;
 
-    @Column(name = "TIPO_PERFIL")
-    private Integer tipoPerfil;
+    @Column(name = "PERFIL")
+    private String perfil;
 
     @Column(name = "DATA_INCLUSAO")
     private LocalDateTime dataInclusao;
